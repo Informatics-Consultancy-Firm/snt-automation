@@ -1,1 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNT Automation Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: 'Oswald', Arial, sans-serif;
+            color: #000000;
+            font-weight: 700;
+            padding: 20px;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 25px 30px;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box img {
+            width: 100px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .page-header h3 {
+            margin: 12px 0 5px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .page-header .tagline {
+            margin: 0;
+            font-size: 10px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .page-header h1 {
+            margin: 20px 0 10px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .page-header .subtitle {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .progress-container {
+            background: #ffffff;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #f8f9fa;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border: 2px solid #004080;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #004080, #0056b3);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #000000;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .content-card {
+            border: 4px double #004080;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .section-title-bar {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title-bar .section-number {
+            background: #ffffff;
+            color: #004080;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title-bar .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .data-flow-intro {
+            background: #f8f9fa;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .data-flow-intro p {
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.8;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 64, 128, 0.2);
+            background: #e7f3ff;
+        }
+
+        .card-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            color: #004080;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-description {
+            font-size: 11px;
+            opacity: 0.9;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 64, 128, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border: 4px double #004080;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 95%;
+            max-height: 90%;
+            width: 1200px;
+            height: 85%;
+            overflow: hidden;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .modal-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-header .card-number {
+            margin-bottom: 0;
+        }
+
+        .close-btn {
+            background: #ffffff;
+            border: none;
+            color: #004080;
+            font-size: 20px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: 700;
+        }
+
+        .close-btn:hover {
+            background: #ffc107;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            flex-grow: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .placeholder-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #f8f9fa;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .placeholder-message .placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+
+        .placeholder-message h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #004080;
+        }
+
+        .placeholder-message p {
+            font-size: 14px;
+            max-width: 450px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .placeholder-message code {
+            background: #e7f3ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #004080;
+        }
+
+        .page-footer {
+            background-color: #004080;
+            color: #ffffff;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.7;
+            font-weight: 700;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .page-footer p {
+            margin: 6px 0 0;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        @media (max-width: 1200px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .card {
+                min-height: 120px;
+            }
+
+            .modal-content {
+                max-width: 98%;
+                max-height: 95%;
+            }
+
+            .logo-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <div class="page-header">
+            <div class="logo-row">
+                <div class="logo-box">
+                    <img src="https://github.com/mohamedsillahkanu/gdp-dashboard-2/raw/6c7463b0d5c3be150aafae695a4bcbbd8aeb1499/ICF-SL.jpg" alt="ICF-SL Logo">
+                </div>
+            </div>
+            <h3>Informatics Consultancy Firm-Sierra Leone<br>(ICF-SL)</h3>
+            <p class="tagline"><em>Driving Data-Driven Solutions for Health and Development</em></p>
+            <h1>SNT AUTOMATION TOOLS</h1>
+            <p class="subtitle">Subnational Tailoring - Streamlined Data Processing & Analysis</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%"></div>
+            </div>
+            <div class="progress-text">8 AUTOMATION TOOLS | DATA PROCESSING → ANALYSIS → EXPORT</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-card">
+            <div class="section-title-bar">
+                <span class="section-number">🛠️</span>
+                <span class="section-title">SNT AUTOMATION WORKFLOW TOOLS</span>
+            </div>
+
+            <div class="data-flow-intro">
+                <p>Click on any card below to open the automation tool interface. Each tool is designed to streamline your SNT data processing workflow.</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card 1: Combine Files -->
+                <div class="card" onclick="openModal('modal1')">
+                    <div class="card-header">
+                        <div class="card-number">1</div>
+                        <div class="card-title">COMBINE FILES</div>
+                        <div class="card-description">Merge multiple data files into a single consolidated dataset</div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Rename Files -->
+                <div class="card" onclick="openModal('modal2')">
+                    <div class="card-header">
+                        <div class="card-number">2</div>
+                        <div class="card-title">RENAME FILES</div>
+                        <div class="card-description">Batch rename files with standardized naming conventions</div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Data Validation -->
+                <div class="card" onclick="openModal('modal3')">
+                    <div class="card-header">
+                        <div class="card-number">3</div>
+                        <div class="card-title">DATA VALIDATION</div>
+                        <div class="card-description">Validate data quality and identify inconsistencies</div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Format Conversion -->
+                <div class="card" onclick="openModal('modal4')">
+                    <div class="card-header">
+                        <div class="card-number">4</div>
+                        <div class="card-title">FORMAT CONVERSION</div>
+                        <div class="card-description">Convert between CSV, Excel, JSON, and other formats</div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Data Cleaning -->
+                <div class="card" onclick="openModal('modal5')">
+                    <div class="card-header">
+                        <div class="card-number">5</div>
+                        <div class="card-title">DATA CLEANING</div>
+                        <div class="card-description">Remove duplicates, fix errors, and standardize data</div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Generate Reports -->
+                <div class="card" onclick="openModal('modal6')">
+                    <div class="card-header">
+                        <div class="card-number">6</div>
+                        <div class="card-title">GENERATE REPORTS</div>
+                        <div class="card-description">Create automated analysis reports and summaries</div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Merge Datasets -->
+                <div class="card" onclick="openModal('modal7')">
+                    <div class="card-header">
+                        <div class="card-number">7</div>
+                        <div class="card-title">MERGE DATASETS</div>
+                        <div class="card-description">Join datasets using common keys and identifiers</div>
+                    </div>
+                </div>
+
+                <!-- Card 8: Export Data -->
+                <div class="card" onclick="openModal('modal8')">
+                    <div class="card-header">
+                        <div class="card-number">8</div>
+                        <div class="card-title">EXPORT DATA</div>
+                        <div class="card-description">Export processed data to various destinations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="page-footer">
+            <p style="margin: 0;">National Malaria Control Programme</p>
+            <p>Ministry of Health and Sanitation, Sierra Leone</p>
+            <p style="font-size: 11px;">Medical Stores Compound, Freetown, Sierra Leone</p>
+            <p style="font-size: 10px;">© 2025 Informatics Consultancy Firm-Sierra Leone (ICF-SL)</p>
+        </div>
+    </div>
+
+    <!-- Modal 1: Combine Files -->
+    <div id="modal1" class="modal" onclick="closeModalOnOutsideClick(event, 'modal1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">1</span> COMBINE FILES</h2>
+                <button class="close-btn" onclick="closeModal('modal1')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe1" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder1">
+                        <div class="placeholder-icon">📎</div>
+                        <h3>Combine Files Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 1.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Rename Files -->
+    <div id="modal2" class="modal" onclick="closeModalOnOutsideClick(event, 'modal2')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">2</span> RENAME FILES</h2>
+                <button class="close-btn" onclick="closeModal('modal2')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe2" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder2">
+                        <div class="placeholder-icon">✏️</div>
+                        <h3>Rename Files Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 2.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Data Validation -->
+    <div id="modal3" class="modal" onclick="closeModalOnOutsideClick(event, 'modal3')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">3</span> DATA VALIDATION</h2>
+                <button class="close-btn" onclick="closeModal('modal3')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe3" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder3">
+                        <div class="placeholder-icon">✅</div>
+                        <h3>Data Validation Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Format Conversion -->
+    <div id="modal4" class="modal" onclick="closeModalOnOutsideClick(event, 'modal4')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">4</span> FORMAT CONVERSION</h2>
+                <button class="close-btn" onclick="closeModal('modal4')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe4" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder4">
+                        <div class="placeholder-icon">🔄</div>
+                        <h3>Format Conversion Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 4.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5: Data Cleaning -->
+    <div id="modal5" class="modal" onclick="closeModalOnOutsideClick(event, 'modal5')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">5</span> DATA CLEANING</h2>
+                <button class="close-btn" onclick="closeModal('modal5')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe5" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder5">
+                        <div class="placeholder-icon">🧹</div>
+                        <h3>Data Cleaning Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 5.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Generate Reports -->
+    <div id="modal6" class="modal" onclick="closeModalOnOutsideClick(event, 'modal6')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">6</span> GENERATE REPORTS</h2>
+                <button class="close-btn" onclick="closeModal('modal6')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe6" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder6">
+                        <div class="placeholder-icon">📈</div>
+                        <h3>Generate Reports Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 6.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 7: Merge Datasets -->
+    <div id="modal7" class="modal" onclick="closeModalOnOutsideClick(event, 'modal7')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">7</span> MERGE DATASETS</h2>
+                <button class="close-btn" onclick="closeModal('modal7')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe7" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder7">
+                        <div class="placeholder-icon">🔗</div>
+                        <h3>Merge Datasets Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 8: Export Data -->
+    <div id="modal8" class="modal" onclick="closeModalOnOutsideClick(event, 'modal8')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2><span class="card-number">8</span> EXPORT DATA</h2>
+                <button class="close-btn" onclick="closeModal('modal8')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="iframe-container">
+                    <iframe id="iframe8" src="" style="display: none;"></iframe>
+                    <div class="placeholder-message" id="placeholder8">
+                        <div class="placeholder-icon">📤</div>
+                        <h3>Export Data Tool</h3>
+                        <p>URL not configured yet. Edit the <code>toolUrls</code> object in the script section and add your URL for tool 8.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // URL CONFIGURATION - ADD YOUR URLS HERE
+        // ============================================
+        const toolUrls = {
+            1: "",  // Combine Files URL
+            2: "",  // Rename Files URL
+            3: "",  // Data Validation URL
+            4: "",  // Format Conversion URL
+            5: "",  // Data Cleaning URL
+            6: "",  // Generate Reports URL
+            7: "",  // Merge Datasets URL
+            8: ""   // Export Data URL
+        };
+        // ============================================
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalNumber = modalId.replace('modal', '');
+            const iframe = document.getElementById('iframe' + modalNumber);
+            const placeholder = document.getElementById('placeholder' + modalNumber);
+            const url = toolUrls[modalNumber];
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Load iframe if URL is configured
+            if (url && url.trim() !== '') {
+                iframe.src = url;
+                iframe.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                iframe.style.display = 'none';
+                placeholder.style.display = 'flex';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalNumber = modalId.replace('modal', '');
+            const iframe = document.getElementById('iframe' + modalNumber);
+
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            // Clear iframe to stop any running content
+            iframe.src = '';
+        }
+
+        function closeModalOnOutsideClick(event, modalId) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(modalId);
+            }
+        }
+
+        // Keyboard navigation - Escape to close
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    closeModal(activeModal.id);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

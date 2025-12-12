@@ -410,6 +410,34 @@
             margin-bottom: 0;
         }
 
+        .modal-header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .open-external-btn {
+            background: #ffc107;
+            border: none;
+            color: #004080;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: 700;
+            font-family: 'Oswald', Arial, sans-serif;
+            gap: 5px;
+        }
+
+        .open-external-btn:hover {
+            background: #ffca2c;
+            transform: scale(1.05);
+        }
+
         .close-btn {
             background: #ffffff;
             border: none;
@@ -486,6 +514,90 @@
             color: #004080;
         }
 
+        /* Loading Spinner */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #f8f9fa;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #e7f3ff;
+            border-top: 5px solid #004080;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: #004080;
+            font-weight: 700;
+        }
+
+        /* Streamlit Notice */
+        .streamlit-notice {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e7f3ff 100%);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .streamlit-notice .notice-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .streamlit-notice h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #004080;
+        }
+
+        .streamlit-notice p {
+            font-size: 14px;
+            max-width: 500px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .streamlit-notice .open-btn {
+            background: #004080;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Oswald', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .streamlit-notice .open-btn:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 64, 128, 0.3);
+        }
+
         .page-footer {
             background-color: #004080;
             color: #ffffff;
@@ -554,6 +666,15 @@
             .nav-btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .modal-header-buttons {
+                gap: 5px;
+            }
+
+            .open-external-btn {
+                padding: 6px 10px;
+                font-size: 10px;
             }
         }
     </style>
@@ -1132,11 +1253,35 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 id="modalTitle"><span class="card-number" id="modalNumber">1</span> <span id="modalTitleText">TOOL NAME</span></h2>
-                <button class="close-btn" onclick="closeModal()">×</button>
+                <div class="modal-header-buttons">
+                    <button class="open-external-btn" id="openExternalBtn" onclick="openInNewTab()" style="display: none;">
+                        🔗 OPEN IN NEW TAB
+                    </button>
+                    <button class="close-btn" onclick="closeModal()">×</button>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="iframe-container">
+                    <!-- Loading Spinner -->
+                    <div class="loading-container" id="loadingContainer" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading tool...</div>
+                    </div>
+                    
+                    <!-- Iframe for regular tools -->
                     <iframe id="modalIframe" src="" style="display: none;"></iframe>
+                    
+                    <!-- Streamlit Notice (for apps that can't be embedded) -->
+                    <div class="streamlit-notice" id="streamlitNotice">
+                        <div class="notice-icon" id="noticeIcon">🌧️</div>
+                        <h3 id="noticeTitle">External Application</h3>
+                        <p id="noticeText">This tool is hosted on an external platform that requires opening in a new browser tab for the best experience.</p>
+                        <button class="open-btn" onclick="openInNewTab()">
+                            🚀 OPEN APPLICATION
+                        </button>
+                    </div>
+                    
+                    <!-- Placeholder for unconfigured tools -->
                     <div class="placeholder-message" id="modalPlaceholder">
                         <div class="placeholder-icon" id="placeholderIcon">📎</div>
                         <h3 id="placeholderTitle">Tool Name</h3>
@@ -1153,6 +1298,7 @@
         // ============================================
         let currentSection = 1;
         const totalSections = 6;
+        let currentToolUrl = '';
 
         const sectionNames = {
             1: "DATA PREPROCESSING",
@@ -1192,8 +1338,8 @@
             "2-3": "https://mohamedsillahkanu.github.io/tpr/",
             "2-4": "https://mohamedsillahkanu.github.io/crude-incidence/",
             "2-5": "https://africa-rainfall-datasets.streamlit.app/",
-            "2-6": "https://gdp-dashboard-ddk50fm82fk.streamlit.app",
-            "2-7": "",
+            "2-6": "https://gdp-dashboard-ddk50fm82fk.streamlit.app/",
+            "2-7": "https://access-to-care.streamlit.app/",
             "2-8": "",
             
             // Section 3: Data Transformation
@@ -1235,6 +1381,25 @@
             "6-6": "",
             "6-7": "",
             "6-8": ""
+        };
+
+        // Tools that should open in new tab (Streamlit apps, etc.)
+        const externalTools = {
+            "2-5": { 
+                title: "Rainfall Analysis", 
+                icon: "🌧️", 
+                description: "This Rainfall Analysis tool is hosted on Streamlit Cloud and works best when opened in a new browser tab."
+            },
+            "2-6": { 
+                title: "Population Dashboard", 
+                icon: "👥", 
+                description: "This Population Dashboard is hosted on Streamlit Cloud and works best when opened in a new browser tab."
+            },
+            "2-7": { 
+                title: "Access to Care Analysis", 
+                icon: "🏥", 
+                description: "This Access to Care tool is hosted on Streamlit Cloud and works best when opened in a new browser tab."
+            }
         };
 
         const toolInfo = {
@@ -1363,27 +1528,82 @@
             const modal = document.getElementById('dynamicModal');
             const iframe = document.getElementById('modalIframe');
             const placeholder = document.getElementById('modalPlaceholder');
+            const streamlitNotice = document.getElementById('streamlitNotice');
+            const loadingContainer = document.getElementById('loadingContainer');
+            const openExternalBtn = document.getElementById('openExternalBtn');
             const url = toolUrls[toolKey];
             const info = toolInfo[toolKey];
 
-            // Update modal content
+            // Store current URL for external opening
+            currentToolUrl = url;
+
+            // Update modal header
             const cardNum = toolKey.split('-')[1];
             document.getElementById('modalNumber').textContent = cardNum;
             document.getElementById('modalTitleText').textContent = info.title;
             document.getElementById('placeholderIcon').textContent = info.icon;
             document.getElementById('placeholderTitle').textContent = info.title + ' Tool';
 
+            // Reset all views
+            iframe.style.display = 'none';
+            placeholder.style.display = 'none';
+            streamlitNotice.style.display = 'none';
+            loadingContainer.style.display = 'none';
+            openExternalBtn.style.display = 'none';
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Load iframe if URL is configured
-            if (url && url.trim() !== '') {
-                iframe.src = url;
-                iframe.style.display = 'block';
-                placeholder.style.display = 'none';
-            } else {
-                iframe.style.display = 'none';
+            // Check if URL is configured
+            if (!url || url.trim() === '') {
                 placeholder.style.display = 'flex';
+                return;
+            }
+
+            // Check if this is an external tool (Streamlit, etc.)
+            if (externalTools[toolKey]) {
+                const extInfo = externalTools[toolKey];
+                document.getElementById('noticeIcon').textContent = extInfo.icon;
+                document.getElementById('noticeTitle').textContent = extInfo.title;
+                document.getElementById('noticeText').textContent = extInfo.description;
+                streamlitNotice.style.display = 'flex';
+                openExternalBtn.style.display = 'flex';
+                return;
+            }
+
+            // For regular tools, show loading then load iframe
+            loadingContainer.style.display = 'flex';
+            openExternalBtn.style.display = 'flex';
+
+            // Load iframe
+            iframe.onload = function() {
+                loadingContainer.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+
+            iframe.onerror = function() {
+                loadingContainer.style.display = 'none';
+                // If iframe fails, show streamlit notice as fallback
+                document.getElementById('noticeIcon').textContent = info.icon;
+                document.getElementById('noticeTitle').textContent = info.title;
+                document.getElementById('noticeText').textContent = 'This tool could not be loaded in the embedded view. Please click the button below to open it in a new tab.';
+                streamlitNotice.style.display = 'flex';
+            };
+
+            iframe.src = url;
+
+            // Fallback timeout - if iframe doesn't load in 10 seconds, show loading still
+            setTimeout(function() {
+                if (loadingContainer.style.display === 'flex') {
+                    // Keep loading but also show external button prominently
+                    openExternalBtn.style.background = '#ffc107';
+                }
+            }, 5000);
+        }
+
+        function openInNewTab() {
+            if (currentToolUrl && currentToolUrl.trim() !== '') {
+                window.open(currentToolUrl, '_blank');
             }
         }
 
@@ -1394,6 +1614,7 @@
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
             iframe.src = '';
+            currentToolUrl = '';
         }
 
         function closeModalOnOutsideClick(event) {

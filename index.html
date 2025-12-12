@@ -577,7 +577,7 @@
         <div class="section-nav-container">
             <div class="section-tabs">
                 <div class="section-tab active" onclick="goToSection(1)">1. DATA PREPROCESSING</div>
-                <div class="section-tab" onclick="goToSection(2)">2. DATA VALIDATION</div>
+                <div class="section-tab" onclick="goToSection(2)">2. EPI STRATIFICATION</div>
                 <div class="section-tab" onclick="goToSection(3)">3. DATA TRANSFORMATION</div>
                 <div class="section-tab" onclick="goToSection(4)">4. ANALYSIS TOOLS</div>
                 <div class="section-tab" onclick="goToSection(5)">5. VISUALIZATION</div>
@@ -592,7 +592,7 @@
         <!-- Main Content -->
         <div class="content-card">
             
-            <!-- SECTION 1: Data Preprocessing -->
+            <!-- SECTION 1: Data Preprocessing (16 Cards) -->
             <div class="section-content active" id="section1">
                 <div class="section-title-bar">
                     <span class="section-number">1</span>
@@ -627,63 +627,91 @@
                         <div class="card-header">
                             <div class="card-number">4</div>
                             <div class="card-title">SORT COLUMNS</div>
-                            <div class="card-description">Sort Columns</div>
+                            <div class="card-description">Reorder and sort columns alphabetically or custom order</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-5')">
                         <div class="card-header">
                             <div class="card-number">5</div>
                             <div class="card-title">SPLIT PERIOD COLUMN</div>
-                            <div class="card-description">Split period column</div>
+                            <div class="card-description">Split period column into separate year and month fields</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-6')">
                         <div class="card-header">
                             <div class="card-number">6</div>
-                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
-                            <div class="card-description">Create year-month column</div>
+                            <div class="card-title">CREATE HFUID</div>
+                            <div class="card-description">Generate unique Health Facility UIDs for data linking</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-7')">
                         <div class="card-header">
                             <div class="card-number">7</div>
-                            <div class="card-title">DIAGNOSTIC CHECK ON COLUMNS</div>
-                            <div class="card-description">Diagnostic check on columns</div>
+                            <div class="card-title">CREATE REPORT COLUMN</div>
+                            <div class="card-description">Add reporting period and status columns to dataset</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-8')">
                         <div class="card-header">
                             <div class="card-number">8</div>
-                            <div class="card-title">COLUMN CONSISTENCY</div>
-                            <div class="card-description">Column consistency</div>
+                            <div class="card-title">CREATE YEAR-MONTH COLUMN</div>
+                            <div class="card-description">Combine year and month into single formatted column</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-9')">
                         <div class="card-header">
                             <div class="card-number">9</div>
-                            <div class="card-title">OUTLIER DETECTION AND CORRECTION</div>
-                            <div class="card-description">Outlier detection and correction</div>
+                            <div class="card-title">DIAGNOSTIC CHECK ON COLUMNS</div>
+                            <div class="card-description">Run diagnostic checks on data columns for issues</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-10')">
                         <div class="card-header">
                             <div class="card-number">10</div>
-                            <div class="card-title">FUZZY NAME MATCHING OF ROUTINE AND POPULATION</div>
-                            <div class="card-description">Fuzzy name matching of routine and population</div>
+                            <div class="card-title">COLUMN CONSISTENCY</div>
+                            <div class="card-description">Verify column consistency across multiple datasets</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-11')">
                         <div class="card-header">
                             <div class="card-number">11</div>
-                            <div class="card-title">MERGE FILES</div>
-                            <div class="card-description">Merges files</div>
+                            <div class="card-title">OUTLIER DETECTION AND CORRECTION</div>
+                            <div class="card-description">Identify and handle statistical outliers in data</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-1-12')">
                         <div class="card-header">
                             <div class="card-number">12</div>
-                            <div class="card-title">MERGE ROUTINE, POPULATION AND SHAPEFILE KEY</div>
-                            <div class="card-description">Standardize and parse date/time fields</div>
+                            <div class="card-title">FUZZY NAME MATCHING</div>
+                            <div class="card-description">Match routine and population data using fuzzy logic</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-13')">
+                        <div class="card-header">
+                            <div class="card-number">13</div>
+                            <div class="card-title">MERGE FILES</div>
+                            <div class="card-description">Merge multiple files based on common key columns</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-14')">
+                        <div class="card-header">
+                            <div class="card-number">14</div>
+                            <div class="card-title">MERGE ROUTINE, POPULATION & SHAPEFILE</div>
+                            <div class="card-description">Combine routine, population and shapefile key data</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-15')">
+                        <div class="card-header">
+                            <div class="card-number">15</div>
+                            <div class="card-title">DATA TYPE CONVERSION</div>
+                            <div class="card-description">Convert column data types (numeric, text, date)</div>
+                        </div>
+                    </div>
+                    <div class="card" onclick="openModal('modal-1-16')">
+                        <div class="card-header">
+                            <div class="card-number">16</div>
+                            <div class="card-title">FINAL DATABASE</div>
+                            <div class="card-description">Generate the final consolidated database for analysis</div>
                         </div>
                     </div>
                 </div>
@@ -698,70 +726,70 @@
                 </div>
             </div>
 
-            <!-- SECTION 2: Data Validation -->
+            <!-- SECTION 2: EPI Stratification -->
             <div class="section-content" id="section2">
                 <div class="section-title-bar">
                     <span class="section-number">2</span>
                     <span class="section-title">EPI STRATIFICATION</span>
                 </div>
                 <div class="data-flow-intro">
-                    <p>Ensure data quality and integrity. These tools help you validate, check consistency, and identify data issues.</p>
+                    <p>Stratify and analyze epidemiological indicators. These tools help calculate rates, coverage, and key metrics.</p>
                 </div>
                 <div class="cards-grid">
                     <div class="card" onclick="openModal('modal-2-1')">
                         <div class="card-header">
                             <div class="card-number">1</div>
-                            <div class="card-title">FINAL DATABASE</div>
-                            <div class="card-description">Final database</div>
+                            <div class="card-title">REPORTING STATUS</div>
+                            <div class="card-description">Track facility reporting status over time</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-2')">
                         <div class="card-header">
                             <div class="card-number">2</div>
-                            <div class="card-title">REPORTING STATUS</div>
-                            <div class="card-description">Reporting status</div>
+                            <div class="card-title">REPORTING RATE</div>
+                            <div class="card-description">Calculate reporting completeness rates</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-3')">
                         <div class="card-header">
                             <div class="card-number">3</div>
-                            <div class="card-title">REPORTING RATE</div>
-                            <div class="card-description">Reporting rate</div>
+                            <div class="card-title">TEST POSITIVITY RATE</div>
+                            <div class="card-description">Calculate malaria test positivity rates</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-4')">
                         <div class="card-header">
                             <div class="card-number">4</div>
-                            <div class="card-title">TEST POSITIVITY RATE</div>
-                            <div class="card-description">Test positivity rate</div>
+                            <div class="card-title">CRUDE INCIDENCE</div>
+                            <div class="card-description">Calculate crude malaria incidence rates</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-5')">
                         <div class="card-header">
                             <div class="card-number">5</div>
-                            <div class="card-title">CRUDE INCIDENCE</div>
-                            <div class="card-description">Crude incidence</div>
+                            <div class="card-title">RAINFALL</div>
+                            <div class="card-description">Analyze rainfall patterns and correlations</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-6')">
                         <div class="card-header">
                             <div class="card-number">6</div>
-                            <div class="card-title">RAINFALL</div>
-                            <div class="card-description">Rainfall</div>
+                            <div class="card-title">POPULATION</div>
+                            <div class="card-description">Population data analysis and projections</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-7')">
                         <div class="card-header">
                             <div class="card-number">7</div>
-                            <div class="card-title">POPULATION</div>
-                            <div class="card-description">Population</div>
+                            <div class="card-title">ACCESS TO CARE</div>
+                            <div class="card-description">Analyze healthcare access metrics</div>
                         </div>
                     </div>
                     <div class="card" onclick="openModal('modal-2-8')">
                         <div class="card-header">
                             <div class="card-number">8</div>
-                            <div class="card-title">ACCESS TO CARE</div>
-                            <div class="card-description">Access to care</div>
+                            <div class="card-title">MORTALITY INDICATORS</div>
+                            <div class="card-description">Calculate mortality and case fatality rates</div>
                         </div>
                     </div>
                 </div>
@@ -1140,29 +1168,34 @@
         // Format: "section-card": "url"
         // ============================================
         const toolUrls = {
-            // Section 1: Data Preprocessing
+            // Section 1: Data Preprocessing (16 cards)
             "1-1": "https://mohamedsillahkanu.github.io/combine-files/",
             "1-2": "https://mohamedsillahkanu.github.io/rename-variables/",
             "1-3": "https://mohamedsillahkanu.github.io/create-new-variables/",
             "1-4": "https://mohamedsillahkanu.github.io/sort/",
             "1-5": "https://mohamedsillahkanu.github.io/split-period-column/",
-            "1-6": "https://mohamedsillahkanu.github.io/year-month-combiner/",
-            "1-7": "https://mohamedsillahkanu.github.io/diagnostic-tool/",
-            "1-8": "https://mohamedsillahkanu.github.io/consistent-column-checker/",
-            "1-9": "https://mohamedsillahkanu.github.io/outlier/",
-            "1-10": "https://mohamedsillahkanu.github.io/fuzzy-name-routinedata-population/",
-            "1-11": "https://mohamedsillahkanu.github.io/file-merger/",
-            "1-12": "https://mohamedsillahkanu.github.io/merge-pop-routione-shapefilekey/",
-            "
-            // Section 2: Data Validation
-            "2-1": ""https://mohamedsillahkanu.github.io/final-database/",
-            "2-2": ""https://mohamedsillahkanu.github.io/heatmap/",
-            "2-3": ""https://mohamedsillahkanu.github.io/reporting-rate/",
-            "2-4": ""https://mohamedsillahkanu.github.io/tpr/",
-            "2-5": ""https://mohamedsillahkanu.github.io/crude-incidence/",
-            "2-6": "https://africa-rainfall-datasets.streamlit.app/",
+            "1-6": "",
+            "1-7": "",
+            "1-8": "https://mohamedsillahkanu.github.io/year-month-combiner/",
+            "1-9": "https://mohamedsillahkanu.github.io/diagnostic-tool/",
+            "1-10": "https://mohamedsillahkanu.github.io/consistent-column-checker/",
+            "1-11": "https://mohamedsillahkanu.github.io/outlier/",
+            "1-12": "https://mohamedsillahkanu.github.io/fuzzy-name-routinedata-population/",
+            "1-13": "https://mohamedsillahkanu.github.io/file-merger/",
+            "1-14": "https://mohamedsillahkanu.github.io/merge-pop-routione-shapefilekey/",
+            "1-15": "",
+            "1-16": "https://mohamedsillahkanu.github.io/final-database/",
+            
+            // Section 2: EPI Stratification
+            "2-1": "https://mohamedsillahkanu.github.io/heatmap/",
+            "2-2": "https://mohamedsillahkanu.github.io/reporting-rate/",
+            "2-3": "https://mohamedsillahkanu.github.io/tpr/",
+            "2-4": "https://mohamedsillahkanu.github.io/crude-incidence/",
+            "2-5": "https://africa-rainfall-datasets.streamlit.app/",
+            "2-6": "",
             "2-7": "",
             "2-8": "",
+            
             // Section 3: Data Transformation
             "3-1": "",
             "3-2": "",
@@ -1172,6 +1205,7 @@
             "3-6": "",
             "3-7": "",
             "3-8": "",
+            
             // Section 4: Analysis Tools
             "4-1": "",
             "4-2": "",
@@ -1181,6 +1215,7 @@
             "4-6": "",
             "4-7": "",
             "4-8": "",
+            
             // Section 5: Visualization
             "5-1": "",
             "5-2": "",
@@ -1190,6 +1225,7 @@
             "5-6": "",
             "5-7": "",
             "5-8": "",
+            
             // Section 6: Export & Reporting
             "6-1": "",
             "6-2": "",
@@ -1202,28 +1238,34 @@
         };
 
         const toolInfo = {
-            // Section 1: Data Preprocessing
+            // Section 1: Data Preprocessing (16 cards)
             "1-1": { title: "COMBINE FILES", icon: "📎" },
             "1-2": { title: "RENAME VARIABLES", icon: "✏️" },
             "1-3": { title: "CREATE NEW VARIABLES", icon: "➕" },
-            "1-4": { title: "FORMAT CONVERSION", icon: "🔄" },
-            "1-5": { title: "REMOVE DUPLICATES", icon: "🗑️" },
-            "1-6": { title: "HANDLE MISSING DATA", icon: "🔍" },
-            "1-7": { title: "DATA TYPE CONVERSION", icon: "🔢" },
-            "1-8": { title: "FILTER ROWS", icon: "🔽" },
-            "1-9": { title: "SELECT COLUMNS", icon: "📋" },
-            "1-10": { title: "SORT DATA", icon: "↕️" },
-            "1-11": { title: "STANDARDIZE TEXT", icon: "📝" },
-            "1-12": { title: "DATE FORMATTING", icon: "📅" },
-            // Section 2: Data Validation
-            "2-1": { title: "RANGE VALIDATION", icon: "📏" },
-            "2-2": { title: "DATA CONSISTENCY CHECK", icon: "✅" },
-            "2-3": { title: "COMPLETENESS CHECK", icon: "📊" },
-            "2-4": { title: "OUTLIER DETECTION", icon: "⚠️" },
-            "2-5": { title: "CROSS-VALIDATION", icon: "🔀" },
-            "2-6": { title: "FACILITY CODE CHECK", icon: "🏥" },
-            "2-7": { title: "DATE VALIDATION", icon: "📆" },
-            "2-8": { title: "DATA QUALITY REPORT", icon: "📋" },
+            "1-4": { title: "SORT COLUMNS", icon: "↕️" },
+            "1-5": { title: "SPLIT PERIOD COLUMN", icon: "📅" },
+            "1-6": { title: "CREATE HFUID", icon: "🆔" },
+            "1-7": { title: "CREATE REPORT COLUMN", icon: "📋" },
+            "1-8": { title: "CREATE YEAR-MONTH COLUMN", icon: "📆" },
+            "1-9": { title: "DIAGNOSTIC CHECK ON COLUMNS", icon: "🔍" },
+            "1-10": { title: "COLUMN CONSISTENCY", icon: "✅" },
+            "1-11": { title: "OUTLIER DETECTION AND CORRECTION", icon: "⚠️" },
+            "1-12": { title: "FUZZY NAME MATCHING", icon: "🔗" },
+            "1-13": { title: "MERGE FILES", icon: "🔀" },
+            "1-14": { title: "MERGE ROUTINE, POPULATION & SHAPEFILE", icon: "🗺️" },
+            "1-15": { title: "DATA TYPE CONVERSION", icon: "🔢" },
+            "1-16": { title: "FINAL DATABASE", icon: "💾" },
+            
+            // Section 2: EPI Stratification
+            "2-1": { title: "REPORTING STATUS", icon: "📊" },
+            "2-2": { title: "REPORTING RATE", icon: "📈" },
+            "2-3": { title: "TEST POSITIVITY RATE", icon: "🧪" },
+            "2-4": { title: "CRUDE INCIDENCE", icon: "📉" },
+            "2-5": { title: "RAINFALL", icon: "🌧️" },
+            "2-6": { title: "POPULATION", icon: "👥" },
+            "2-7": { title: "ACCESS TO CARE", icon: "🏥" },
+            "2-8": { title: "MORTALITY INDICATORS", icon: "📋" },
+            
             // Section 3: Data Transformation
             "3-1": { title: "MERGE DATASETS", icon: "🔗" },
             "3-2": { title: "PIVOT TABLE", icon: "📊" },
@@ -1233,6 +1275,7 @@
             "3-6": { title: "CONCATENATE COLUMNS", icon: "🔗" },
             "3-7": { title: "TRANSPOSE DATA", icon: "↔️" },
             "3-8": { title: "HIERARCHICAL ROLLUP", icon: "🏛️" },
+            
             // Section 4: Analysis Tools
             "4-1": { title: "INCIDENCE CALCULATION", icon: "📈" },
             "4-2": { title: "TREND ANALYSIS", icon: "📉" },
@@ -1242,6 +1285,7 @@
             "4-6": { title: "PRIORITY CLASSIFICATION", icon: "🏆" },
             "4-7": { title: "COMPARATIVE ANALYSIS", icon: "⚖️" },
             "4-8": { title: "STATISTICAL SUMMARY", icon: "📐" },
+            
             // Section 5: Visualization
             "5-1": { title: "CHOROPLETH MAPS", icon: "🗺️" },
             "5-2": { title: "TIME SERIES CHARTS", icon: "📈" },
@@ -1251,6 +1295,7 @@
             "5-6": { title: "SCATTER PLOTS", icon: "⚫" },
             "5-7": { title: "DASHBOARD BUILDER", icon: "📱" },
             "5-8": { title: "INFOGRAPHICS", icon: "🎨" },
+            
             // Section 6: Export & Reporting
             "6-1": { title: "EXPORT TO EXCEL", icon: "📗" },
             "6-2": { title: "EXPORT TO CSV", icon: "📄" },
